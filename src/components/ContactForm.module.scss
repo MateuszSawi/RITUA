@@ -1,0 +1,110 @@
+@use "../styles/variables" as *;
+@use "../styles/mixins" as *;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.row {
+  display: grid;
+  gap: 22px;
+  grid-template-columns: 1fr;
+
+  @media (min-width: $bp-sm) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  label {
+    font-family: $font-body;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: $slate;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 15px 18px;
+    background: rgba(232, 236, 239, 0.03);
+    border: 1px solid rgba(232, 236, 239, 0.16);
+    border-radius: $radius;
+    color: $ink-light;
+    font-family: $font-body;
+    font-size: 1.12rem;
+    outline: none;
+    transition: border-color 0.35s $ease-out, background 0.35s $ease-out;
+
+    &::placeholder {
+      color: rgba(232, 236, 239, 0.4);
+    }
+
+    &:focus {
+      border-color: #cdb49a;
+      background: rgba(232, 236, 239, 0.05);
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.6;
+  }
+}
+
+.submit {
+  @include btn;
+  align-self: flex-start;
+  margin-top: 6px;
+}
+
+.note {
+  font-size: 0.98rem;
+  color: rgba(232, 236, 239, 0.45);
+}
+
+// --- Stan po wysłaniu ---
+.success {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 48px 40px;
+  border: 1px solid rgba(205, 180, 154, 0.35);
+  background: rgba(205, 180, 154, 0.06);
+  border-radius: $radius;
+
+  h3 {
+    font-family: $font-title;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    letter-spacing: 0.02em;
+    margin: 22px 0 14px;
+    color: $ink-light;
+  }
+
+  p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: $ink-light-muted;
+  }
+}
+
+.successIcon {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(205, 180, 154, 0.14);
+  color: #cdb49a;
+}

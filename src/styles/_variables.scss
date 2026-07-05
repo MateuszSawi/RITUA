@@ -1,0 +1,38 @@
+// Design tokens — RITUA
+// Premium balie & sauny — brand palette
+
+// Core colors
+$navy: #202532; // primary — deep slate navy (balie)
+$navy-deep: #1a1e29;
+$navy-soft: #272d3d; // raised surface on dark
+$steel: #2e3a4b; // sauny background — deep steel blue (jaśniejszy niż navy)
+$steel-deep: #28323f; // sauny raised/alt surface
+$steel-muted: rgba(232, 236, 239, 0.66);
+$secondary: #e8ecef; // light sections (legacy)
+$secondary-warm: #eef1f3;
+$slate: #7c8894; // third color — muted blue-grey (ornaments)
+$brown: #4a2b1d; // deep brown accent
+$brown-btn: #7b5943; // button brown
+$brown-btn-hover: #8d6852;
+
+// Text
+$ink-light: #e8ecef; // text on dark
+$ink-light-muted: rgba(232, 236, 239, 0.66);
+$ink-dark: #202532; // text on light
+$ink-dark-muted: rgba(32, 37, 50, 0.66);
+
+// Typography
+$font-title: var(--font-title), "Times New Roman", serif; // Cinzel Decorative
+$font-body: var(--font-body), Georgia, serif; // Cormorant Garamond
+
+// Layout
+$maxw: 1240px;
+$radius: 4px;
+
+// Motion
+$ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+// Breakpoints
+$bp-sm: 560px;
+$bp-md: 860px;
+$bp-lg: 1080px;

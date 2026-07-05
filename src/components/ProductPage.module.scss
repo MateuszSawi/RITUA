@@ -1,0 +1,502 @@
+@use "../styles/variables" as *;
+@use "../styles/mixins" as *;
+
+$champ: #cdb49a;
+$accent-light: $slate; // akcent motywu stalowego (sauny)
+
+.page {
+  overflow-x: hidden;
+}
+
+.container {
+  @include container;
+}
+
+// ---- Motyw ----
+.dark {
+  background: $navy;
+  color: $ink-light;
+}
+.light {
+  background: $steel;
+  color: $ink-light;
+}
+.dark .alt {
+  background: $navy-deep;
+}
+.light .alt {
+  background: $steel-deep;
+}
+
+// ---- Wspólne ----
+.section {
+  padding-block: clamp(70px, 10vh, 130px);
+}
+
+.sectionHead {
+  max-width: 640px;
+  margin-bottom: clamp(38px, 5vh, 62px);
+}
+
+.eyebrow,
+.kicker {
+  @include eyebrow;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: $slate;
+  margin-bottom: 20px;
+}
+
+.eyebrow {
+  justify-content: center;
+}
+
+.rule {
+  width: 42px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.5;
+}
+
+.h1 {
+  font-family: $font-title;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(2.3rem, 5vw, 4.2rem);
+  line-height: 1.1;
+  letter-spacing: 0.03em;
+}
+
+.h2 {
+  font-family: $font-title;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(1.7rem, 3vw, 2.6rem);
+  line-height: 1.16;
+  letter-spacing: 0.02em;
+  color: $ink-light;
+}
+
+// ---- Hero ----
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-top: clamp(130px, 18vh, 210px);
+  padding-bottom: clamp(60px, 8vh, 110px);
+
+  > .container {
+    position: relative;
+    z-index: 3;
+  }
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  img {
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  .dark & {
+    background: linear-gradient(
+      to bottom,
+      rgba(32, 37, 50, 0.9) 0%,
+      rgba(32, 37, 50, 0.82) 45%,
+      rgba(32, 37, 50, 0.94) 100%
+    );
+  }
+  .light & {
+    background: linear-gradient(
+      to bottom,
+      rgba(46, 58, 75, 0.9) 0%,
+      rgba(46, 58, 75, 0.82) 45%,
+      rgba(46, 58, 75, 0.95) 100%
+    );
+  }
+}
+
+.heroOrn {
+  position: absolute;
+  z-index: 2;
+  width: clamp(110px, 14vw, 210px);
+  aspect-ratio: 1 / 1;
+  pointer-events: none;
+  opacity: 0.34;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  &.tl {
+    top: 0;
+    left: 0;
+  }
+  &.tr {
+    top: 0;
+    right: 0;
+  }
+  &.bl {
+    bottom: 0;
+    left: 0;
+  }
+  &.br {
+    bottom: 0;
+    right: 0;
+  }
+}
+
+.heroHead {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto clamp(46px, 6vh, 78px);
+}
+
+.lead {
+  margin-top: 26px;
+  font-size: clamp(1.1rem, 1.9vw, 1.35rem);
+  line-height: 1.7;
+  max-width: 620px;
+  margin-inline: auto;
+  color: $ink-light-muted;
+}
+
+.heroMedia {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+// ---- Intro ----
+.intro {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: 1fr;
+
+  @media (min-width: $bp-md) {
+    grid-template-columns: 1fr 1.2fr;
+    gap: 72px;
+    align-items: start;
+  }
+}
+
+.introBody {
+  p {
+    font-size: 1.24rem;
+    line-height: 1.75;
+    margin-bottom: 18px;
+    color: $ink-light-muted;
+  }
+}
+
+// ---- Wyposażenie ----
+.featureGrid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+
+  @media (min-width: $bp-sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: $bp-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.feature {
+  padding: 34px 30px;
+  border: 1px solid rgba(232, 236, 239, 0.09);
+  background: rgba(232, 236, 239, 0.02);
+
+  h3 {
+    font-family: $font-title;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 1.15rem;
+    letter-spacing: 0.03em;
+    margin-bottom: 12px;
+  }
+
+  p {
+    font-size: 1.08rem;
+    line-height: 1.65;
+    color: $ink-light-muted;
+  }
+}
+
+.featureIcon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 22px;
+  color: $champ;
+
+  .dark & {
+    background: rgba(205, 180, 154, 0.12);
+  }
+  .light & {
+    background: rgba(124, 136, 148, 0.16);
+    color: $accent-light;
+  }
+}
+
+// ---- Dane techniczne ----
+.specGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 64px;
+  margin: 0;
+
+  @media (min-width: $bp-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.specRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  padding: 17px 0;
+  border-bottom: 1px solid rgba(232, 236, 239, 0.1);
+
+  dt {
+    font-size: 1.08rem;
+    color: $ink-light-muted;
+  }
+
+  dd {
+    margin: 0;
+    min-width: 0;
+    font-family: $font-title;
+    font-size: 0.98rem;
+    letter-spacing: 0.02em;
+    text-align: right;
+    color: $ink-light;
+  }
+
+  // gdy się nie mieści — etykieta i wartość jedna pod drugą
+  @media (max-width: $bp-sm) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+
+    dd {
+      text-align: left;
+    }
+  }
+}
+
+// ---- Materiały ----
+.matGrid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+
+  @media (min-width: $bp-sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: $bp-lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.matCard {
+  padding: 30px 26px;
+  border-top: 1px solid rgba(232, 236, 239, 0.14);
+
+  h3 {
+    font-family: $font-title;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 1.05rem;
+    letter-spacing: 0.03em;
+    margin: 14px 0 10px;
+  }
+
+  p {
+    font-size: 1.02rem;
+    line-height: 1.6;
+    color: $ink-light-muted;
+  }
+}
+
+.matIndex {
+  font-family: $font-title;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  color: $champ;
+
+  .light & {
+    color: $accent-light;
+  }
+}
+
+// ---- Warianty i wymiary ----
+.modelGrid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+
+  @media (min-width: $bp-sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: $bp-lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.modelCard {
+  padding: 32px 28px;
+  border: 1px solid rgba(232, 236, 239, 0.1);
+  background: rgba(232, 236, 239, 0.02);
+
+  h3 {
+    font-family: $font-title;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    letter-spacing: 0.02em;
+    margin-bottom: 20px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(232, 236, 239, 0.12);
+    color: $ink-light;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-size: 1.06rem;
+    color: $ink-light-muted;
+
+    svg {
+      color: $slate;
+      flex-shrink: 0;
+    }
+  }
+}
+
+// ---- Proces ----
+.processGrid {
+  display: grid;
+  gap: 32px 26px;
+  grid-template-columns: 1fr;
+
+  @media (min-width: $bp-sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: $bp-lg) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.step {
+  h3 {
+    font-family: $font-title;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 1.08rem;
+    letter-spacing: 0.02em;
+    margin: 14px 0 10px;
+  }
+
+  p {
+    font-size: 1.02rem;
+    line-height: 1.6;
+    color: $ink-light-muted;
+  }
+}
+
+.stepNo {
+  font-family: $font-title;
+  font-size: 1.7rem;
+  color: $champ;
+  display: block;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(232, 236, 239, 0.14);
+
+  .light & {
+    color: $accent-light;
+  }
+}
+
+// ---- Galeria ----
+.galleryWrap {
+  max-width: 1000px;
+}
+
+.galleryLink {
+  margin-top: 30px;
+}
+
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: $font-body;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $champ;
+  transition: gap 0.35s $ease-out;
+
+  &:hover {
+    gap: 16px;
+  }
+
+  .light & {
+    color: $accent-light;
+  }
+}
+
+// ---- CTA ----
+.ctaSection {
+  padding-block: clamp(80px, 11vh, 150px);
+
+  .dark & {
+    background: $navy-deep;
+  }
+  .light & {
+    background: $steel-deep;
+  }
+}
+
+.ctaCard {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+
+  p {
+    margin: 20px auto 34px;
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: $ink-light-muted;
+  }
+}
+
+.ctaBtn {
+  @include btn;
+}

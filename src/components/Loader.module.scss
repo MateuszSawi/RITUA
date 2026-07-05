@@ -1,0 +1,92 @@
+@use "../styles/variables" as *;
+
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(18px, 3vh, 30px);
+  background: $navy; // granatowe tło
+}
+
+// --- Rysowana ramka na ekranie loadera ---
+$finset: clamp(14px, 2.2vw, 30px);
+$fcol: rgba(205, 180, 154, 0.42); // szampański akcent
+
+.fTop,
+.fBottom {
+  position: absolute;
+  left: $finset;
+  right: $finset;
+  height: 1px;
+  background: $fcol;
+}
+
+.fLeft,
+.fRight {
+  position: absolute;
+  top: $finset;
+  bottom: $finset;
+  width: 1px;
+  background: $fcol;
+}
+
+.fTop {
+  top: $finset;
+  transform-origin: left center;
+}
+.fRight {
+  right: $finset;
+  transform-origin: center top;
+}
+.fBottom {
+  bottom: $finset;
+  transform-origin: right center;
+}
+.fLeft {
+  left: $finset;
+  transform-origin: center bottom;
+}
+
+.word {
+  display: flex;
+}
+
+.letter {
+  font-family: $font-title;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(2.6rem, 9vw, 5.4rem);
+  letter-spacing: 0.2em;
+  line-height: 1;
+  color: $ink-light;
+  will-change: transform, opacity, filter;
+
+  // kompensacja tracking'u po ostatniej literze — optyczne wyśrodkowanie
+  &:last-child {
+    margin-right: -0.2em;
+  }
+}
+
+.line {
+  width: clamp(120px, 22vw, 210px);
+  height: 1px;
+  background: #cdb49a; // szampański akcent
+  transform-origin: center;
+}
+
+.slogan {
+  font-family: $font-body;
+  font-size: clamp(0.85rem, 1.7vw, 1.1rem);
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  text-align: center;
+  color: $ink-light-muted;
+  padding-inline: 24px 0;
+  padding-left: 0.3em; // kompensacja rozstrzelenia
+  max-width: 90vw;
+}

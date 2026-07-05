@@ -1,0 +1,195 @@
+@use "../styles/variables" as *;
+@use "../styles/mixins" as *;
+
+.about {
+  position: relative;
+  overflow: hidden;
+}
+
+.bg {
+  position: absolute;
+  inset: -12% 0;
+  z-index: 0;
+
+  img {
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+      to bottom,
+      rgba(20, 24, 33, 0.9),
+      rgba(20, 24, 33, 0.82)
+    ),
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(20, 24, 33, 0.3),
+      rgba(20, 24, 33, 0.82) 88%
+    );
+}
+
+.inner {
+  @include container;
+  position: relative;
+  z-index: 3;
+  max-width: 860px;
+  text-align: center;
+  padding-block: clamp(90px, 15vh, 170px);
+}
+
+.eyebrow {
+  @include eyebrow;
+  display: block;
+  color: #cdb49a;
+  margin-bottom: 24px;
+}
+
+.heading {
+  font-family: $font-title;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(2rem, 4.2vw, 3.4rem);
+  line-height: 1.16;
+  letter-spacing: 0.02em;
+  color: $ink-light;
+  margin-bottom: 28px;
+  text-shadow: 0 2px 30px rgba(15, 18, 26, 0.6);
+}
+
+.text {
+  font-size: clamp(1.12rem, 1.8vw, 1.32rem);
+  line-height: 1.75;
+  color: rgba(232, 236, 239, 0.86);
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px 24px;
+  margin-top: clamp(48px, 7vh, 80px);
+
+  @media (min-width: $bp-md) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  strong {
+    font-family: $font-title;
+    font-weight: 400;
+    font-size: clamp(2.2rem, 3.6vw, 3rem);
+    line-height: 1;
+    color: #cdb49a;
+  }
+
+  span {
+    font-family: $font-body;
+    font-size: 0.98rem;
+    letter-spacing: 0.06em;
+    color: rgba(232, 236, 239, 0.7);
+    max-width: 16ch;
+  }
+}
+
+.actions {
+  margin-top: clamp(46px, 6vh, 74px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.actionsLabel {
+  font-family: $font-body;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(232, 236, 239, 0.6);
+}
+
+.actionsRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+
+.ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 168px;
+  justify-content: center;
+  padding: 14px 32px;
+  border: 1px solid rgba(232, 236, 239, 0.28);
+  border-radius: $radius;
+  font-family: $font-body;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: $ink-light;
+  transition: border-color 0.4s $ease-out, background 0.4s $ease-out,
+    color 0.4s $ease-out, transform 0.4s $ease-out;
+
+  svg {
+    transition: transform 0.4s $ease-out;
+  }
+
+  &:hover {
+    border-color: #cdb49a;
+    background: rgba(205, 180, 154, 0.08);
+    color: #cdb49a;
+    transform: translateY(-2px);
+
+    svg {
+      transform: translateX(4px);
+    }
+  }
+}
+
+// --- Roślinna ramka ---
+.orn {
+  position: absolute;
+  z-index: 2;
+  width: clamp(110px, 15vw, 220px);
+  aspect-ratio: 1 / 1;
+  pointer-events: none;
+  opacity: 0.45;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.tl {
+  top: 0;
+  left: 0;
+}
+.tr {
+  top: 0;
+  right: 0;
+}
+.bl {
+  bottom: 0;
+  left: 0;
+}
+.br {
+  bottom: 0;
+  right: 0;
+}

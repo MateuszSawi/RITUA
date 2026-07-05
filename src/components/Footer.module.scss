@@ -1,0 +1,133 @@
+@use "../styles/variables" as *;
+@use "../styles/mixins" as *;
+
+.footer {
+  background: $navy-deep;
+  color: $ink-light;
+  border-top: 1px solid rgba(232, 236, 239, 0.08);
+}
+
+.top {
+  @include container;
+  padding-block: 84px 56px;
+  display: grid;
+  gap: 48px;
+  grid-template-columns: 1fr;
+
+  @media (min-width: $bp-sm) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (min-width: $bp-lg) {
+    grid-template-columns: 1.7fr 1fr 1.1fr 1.2fr;
+    gap: 56px;
+  }
+}
+
+.brandCol {
+  max-width: 340px;
+
+  p {
+    margin-top: 22px;
+    font-size: 1.12rem;
+    line-height: 1.7;
+    color: $ink-light-muted;
+  }
+}
+
+.logo {
+  display: inline-block;
+  font-family: $font-title;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  letter-spacing: 0.24em;
+  line-height: 1;
+  color: $ink-light;
+  padding-left: 0.24em; // kompensacja rozstrzelenia
+}
+
+.top h4 {
+  font-family: $font-body;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: $slate;
+  margin-bottom: 22px;
+}
+
+.nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.nav a,
+.contact a,
+.contact span {
+  font-size: 1.14rem;
+  color: $ink-light-muted;
+  transition: color 0.3s $ease-out;
+}
+
+.nav a:hover,
+.contact a:hover {
+  color: $ink-light;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  a,
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+  }
+
+  svg {
+    color: $slate;
+    flex-shrink: 0;
+  }
+}
+
+.ctaCol {
+  p {
+    color: $ink-light-muted;
+    font-size: 1.12rem;
+    margin-bottom: 22px;
+  }
+}
+
+.cta {
+  @include btn;
+  padding: 13px 26px;
+  font-size: 1rem;
+}
+
+.bottom {
+  @include container;
+  padding-block: 26px;
+  border-top: 1px solid rgba(232, 236, 239, 0.08);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  color: rgba(232, 236, 239, 0.5);
+
+  div {
+    display: flex;
+    gap: 26px;
+  }
+
+  a:hover {
+    color: $ink-light;
+  }
+}

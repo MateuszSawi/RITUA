@@ -1,0 +1,252 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.page {
+  background: $navy;
+  color: $ink-light;
+  overflow-x: hidden;
+}
+
+// --- Nagłówek ---
+.header {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding-top: clamp(140px, 20vh, 230px);
+  padding-bottom: clamp(40px, 6vh, 70px);
+}
+
+.headInner {
+  @include container;
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
+}
+
+.headOrn {
+  position: absolute;
+  z-index: 1;
+  width: clamp(110px, 14vw, 200px);
+  aspect-ratio: 1 / 1;
+  pointer-events: none;
+  opacity: 0.38;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.headOrn.tl {
+  top: 0;
+  left: 0;
+}
+.headOrn.tr {
+  top: 0;
+  right: 0;
+}
+.headOrn.bl {
+  bottom: 0;
+  left: 0;
+}
+.headOrn.br {
+  bottom: 0;
+  right: 0;
+}
+
+.eyebrow {
+  @include eyebrow;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  color: $slate;
+  margin-bottom: 24px;
+
+  &::before,
+  &::after {
+    content: "";
+    width: 42px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.5;
+  }
+}
+
+.title {
+  font-family: $font-title;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(1.7rem, 6vw, 4.2rem);
+  line-height: 1.12;
+  letter-spacing: 0.03em;
+  overflow-wrap: break-word;
+  margin-bottom: 26px;
+}
+
+.intro {
+  font-size: 1.24rem;
+  line-height: 1.72;
+  color: $ink-light-muted;
+  max-width: 620px;
+  margin-inline: auto;
+}
+
+// --- Zdjęcie zespołu ---
+.team {
+  @include container;
+  padding-block: clamp(40px, 6vh, 70px);
+}
+
+.teamFrame {
+  position: relative;
+  max-width: 1040px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.teamBorder {
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(232, 236, 239, 0.3);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.orn {
+  position: absolute;
+  z-index: 3;
+  width: clamp(90px, 12vw, 170px);
+  aspect-ratio: 1 / 1;
+  pointer-events: none;
+  opacity: 0.55;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.tl {
+  top: -14px;
+  left: -14px;
+}
+.tr {
+  top: -14px;
+  right: -14px;
+}
+.bl {
+  bottom: -14px;
+  left: -14px;
+}
+.br {
+  bottom: -14px;
+  right: -14px;
+}
+
+.caption {
+  text-align: center;
+  margin-top: 22px;
+  font-family: $font-body;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: $slate;
+}
+
+// --- Sekcja kontaktu ---
+.contact {
+  @include container;
+  padding-block: clamp(60px, 9vh, 120px);
+}
+
+.grid {
+  display: grid;
+  gap: 56px;
+  grid-template-columns: 1fr;
+
+  @media (min-width: $bp-md) {
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(56px, 7vw, 100px);
+  }
+}
+
+.blockHead {
+  font-family: $font-title;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  letter-spacing: 0.02em;
+  margin-bottom: 34px;
+}
+
+.infoList {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.infoRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.infoIcon {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(232, 236, 239, 0.14);
+  color: #cdb49a;
+}
+
+.infoText {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  span {
+    font-family: $font-body;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: $slate;
+  }
+
+  a,
+  p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: $ink-light;
+    transition: color 0.3s $ease-out;
+  }
+
+  a:hover {
+    color: #cdb49a;
+  }
+}
+
+.divider {
+  height: 1px;
+  background: rgba(232, 236, 239, 0.1);
+  margin: 34px 0;
+}
+
+.note {
+  margin-top: 14px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: $ink-light-muted;
+}

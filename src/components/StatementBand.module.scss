@@ -1,0 +1,105 @@
+@use "../styles/variables" as *;
+@use "../styles/mixins" as *;
+
+.band {
+  position: relative;
+  overflow: hidden;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bg {
+  position: absolute;
+  inset: -12% 0;
+  z-index: 0;
+
+  img {
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+      to bottom,
+      rgba(20, 24, 33, 0.72),
+      rgba(20, 24, 33, 0.6)
+    ),
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(20, 24, 33, 0.25),
+      rgba(20, 24, 33, 0.75) 85%
+    );
+}
+
+.inner {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  max-width: 800px;
+  padding: clamp(84px, 14vh, 150px) 40px;
+}
+
+.kicker {
+  @include eyebrow;
+  display: block;
+  color: #cdb49a;
+  margin-bottom: 24px;
+}
+
+.text {
+  font-family: $font-title;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(1.5rem, 3.2vw, 2.8rem);
+  line-height: 1.24;
+  letter-spacing: 0.02em;
+  color: $ink-light;
+  text-shadow: 0 2px 30px rgba(15, 18, 26, 0.7);
+}
+
+.line {
+  display: block;
+  width: 68px;
+  height: 1px;
+  margin: 30px auto 0;
+  background: #cdb49a;
+}
+
+// --- Roślinna ramka w rogach ---
+.orn {
+  position: absolute;
+  z-index: 2;
+  width: clamp(120px, 16vw, 240px);
+  aspect-ratio: 1 / 1;
+  pointer-events: none;
+  opacity: 0.5;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.tl {
+  top: 0;
+  left: 0;
+}
+.tr {
+  top: 0;
+  right: 0;
+}
+.bl {
+  bottom: 0;
+  left: 0;
+}
+.br {
+  bottom: 0;
+  right: 0;
+}

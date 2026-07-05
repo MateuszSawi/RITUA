@@ -1,0 +1,65 @@
+@use "../styles/variables" as *;
+
+.frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  max-height: 660px;
+  overflow: hidden;
+  background: $navy-deep;
+  box-shadow: 0 50px 90px -55px rgba(15, 18, 26, 0.9);
+
+  @media (min-width: $bp-md) {
+    aspect-ratio: 3 / 4;
+  }
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  will-change: opacity;
+}
+
+.zoom {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+
+  img {
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+// cienka wewnętrzna ramka — detal premium
+.border {
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(232, 236, 239, 0.32);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.dots {
+  position: absolute;
+  z-index: 4;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(232, 236, 239, 0.45);
+  transition: background 0.5s $ease-out, width 0.5s $ease-out;
+}
+
+.active {
+  width: 22px;
+  border-radius: 3px;
+  background: #cdb49a;
+}

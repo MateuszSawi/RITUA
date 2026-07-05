@@ -1,0 +1,181 @@
+@use "../styles/variables" as *;
+@use "../styles/mixins" as *;
+
+.hero {
+  position: relative;
+  height: 100svh;
+  max-height: 100svh;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+      92deg,
+      rgba(26, 30, 41, 0.72) 0%,
+      rgba(26, 30, 41, 0.36) 40%,
+      rgba(26, 30, 41, 0.1) 70%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(26, 30, 41, 0.5) 0%,
+      transparent 24%,
+      transparent 62%,
+      rgba(26, 30, 41, 0.62) 100%
+    );
+}
+
+.inner {
+  @include container;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.copy {
+  max-width: 46rem;
+}
+
+.kicker {
+  display: block;
+  font-family: $font-body;
+  font-size: clamp(0.8rem, 1vw, 1.05rem);
+  font-weight: 600;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: rgba(232, 236, 239, 0.85);
+  margin-bottom: clamp(20px, 2.6vh, 38px);
+  padding-left: 3px;
+  text-shadow: 0 1px 12px rgba(15, 18, 26, 0.7);
+}
+
+.title {
+  font-family: $font-title;
+  font-weight: 400;
+  text-transform: uppercase;
+  // normalny rozmiar do Full HD włącznie
+  font-size: clamp(1.55rem, 4.4vw, 2.9rem);
+  line-height: 1.24;
+  letter-spacing: 0.03em;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+  color: $ink-light;
+  // subtelny „cień za tekstem" dla czytelności na wideo
+  text-shadow: 0 2px 40px rgba(15, 18, 26, 0.85),
+    0 1px 12px rgba(15, 18, 26, 0.7);
+
+  em {
+    font-style: normal;
+    font-weight: 700;
+    color: #cdb49a; // ciepły szampański akcent
+  }
+}
+
+// Powiększenie dopiero na monitorach większych niż Full HD (> 1920 px)
+@media (min-width: 1921px) {
+  .copy {
+    max-width: 62rem;
+  }
+
+  .title {
+    font-size: clamp(2.9rem, 3.4vw, 5.5rem);
+    line-height: 1.2;
+  }
+}
+
+// --- Autorski wskaźnik przewijania ---
+.scroll {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(24px, 4vh, 44px);
+  transform: translateX(-50%);
+  z-index: 3;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  transition: opacity 0.4s $ease-out;
+
+  &:hover {
+    opacity: 0.65;
+
+    .chevron {
+      transform: translateY(3px);
+    }
+  }
+}
+
+.scrollLabel {
+  font-family: $font-body;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: rgba(232, 236, 239, 0.78);
+  text-shadow: 0 1px 10px rgba(15, 18, 26, 0.7);
+}
+
+.track {
+  position: relative;
+  width: 1px;
+  height: 54px;
+  overflow: hidden;
+  background: rgba(232, 236, 239, 0.28);
+}
+
+.spark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    #cdb49a 55%,
+    rgba(232, 236, 239, 0.95)
+  );
+  animation: slide 2.4s $ease-out infinite;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateY(-110%);
+  }
+  60%,
+  100% {
+    transform: translateY(260%);
+  }
+}
+
+.chevron {
+  color: rgba(232, 236, 239, 0.85);
+  transition: transform 0.4s $ease-out;
+  filter: drop-shadow(0 2px 8px rgba(15, 18, 26, 0.6));
+
+  svg {
+    width: 22px;
+    height: auto;
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spark {
+    animation: none;
+  }
+}

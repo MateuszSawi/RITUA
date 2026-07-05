@@ -1,0 +1,85 @@
+@use "../styles/variables" as *;
+
+.gallery {
+  width: 100%;
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: $navy-deep;
+  box-shadow: 0 50px 90px -55px rgba(15, 18, 26, 0.9);
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  will-change: opacity;
+}
+
+.zoom {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+
+  img {
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.border {
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(232, 236, 239, 0.28);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.thumbs {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(7px, 1vw, 14px);
+  margin-top: clamp(10px, 1.4vw, 16px);
+}
+
+.thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.5;
+  filter: grayscale(0.2);
+  transition: opacity 0.45s $ease-out, filter 0.45s $ease-out,
+    transform 0.45s $ease-out;
+
+  img {
+    object-fit: cover;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid transparent;
+    transition: border-color 0.45s $ease-out;
+  }
+
+  &:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+  }
+}
+
+.active {
+  opacity: 1;
+  filter: none;
+
+  &::after {
+    border-color: #cdb49a;
+  }
+}

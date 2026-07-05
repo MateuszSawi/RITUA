@@ -1,0 +1,259 @@
+@use "../styles/variables" as *;
+@use "../styles/mixins" as *;
+
+.nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  transition: background 0.5s $ease-out, backdrop-filter 0.5s $ease-out,
+    border-color 0.5s $ease-out;
+  border-bottom: 1px solid transparent;
+}
+
+.scrolled {
+  background: rgba(26, 30, 41, 0.82);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border-bottom-color: rgba(232, 236, 239, 0.1);
+}
+
+.inner {
+  @include container;
+  height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  transition: height 0.5s $ease-out;
+
+  .scrolled & {
+    height: 70px;
+  }
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  font-family: $font-title;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(1.35rem, 2vw, 1.6rem);
+  letter-spacing: 0.24em;
+  line-height: 1;
+  color: $ink-light;
+  padding-left: 0.24em;
+  transition: opacity 0.3s $ease-out, color 0.4s $ease-out;
+
+  &:hover {
+    opacity: 0.82;
+  }
+}
+
+.links {
+  display: none;
+  align-items: center;
+  gap: 40px;
+  font-family: $font-body;
+  font-size: 1.12rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(232, 236, 239, 0.82);
+
+  @media (min-width: $bp-md) {
+    display: flex;
+  }
+
+  > a,
+  .dropToggle {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    transition: color 0.3s $ease-out;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -7px;
+      width: 0;
+      height: 1px;
+      background: $slate;
+      transform: translateX(-50%);
+      transition: width 0.35s $ease-out;
+    }
+
+    &:hover {
+      color: $ink-light;
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// ---- Dropdown ----
+.dropdown {
+  position: relative;
+
+  .dropToggle svg {
+    transition: transform 0.35s $ease-out;
+  }
+
+  &:hover .dropToggle svg,
+  &:focus-within .dropToggle svg {
+    transform: rotate(180deg);
+  }
+}
+
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  min-width: 180px;
+  margin-top: 12px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(26, 30, 41, 0.94);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(232, 236, 239, 0.12);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s $ease-out, transform 0.3s $ease-out;
+
+  // niewidzialny mostek, aby hover nie gubił się w odstępie
+  &::before {
+    content: "";
+    position: absolute;
+    top: -14px;
+    left: 0;
+    right: 0;
+    height: 14px;
+  }
+
+  a {
+    padding: 11px 18px;
+    font-size: 1rem;
+    letter-spacing: 0.14em;
+    color: rgba(232, 236, 239, 0.8);
+    white-space: nowrap;
+    transition: color 0.3s $ease-out, background 0.3s $ease-out;
+
+    &:hover {
+      color: $ink-light;
+      background: rgba(232, 236, 239, 0.05);
+    }
+  }
+
+  .dropdown:hover &,
+  .dropdown:focus-within & {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.burger {
+  color: $ink-light;
+  display: inline-flex;
+  transition: color 0.4s $ease-out;
+
+  @media (min-width: $bp-md) {
+    display: none;
+  }
+}
+
+// ---- Motyw jasny na górze (przed scrollem) ----
+.onLight:not(.scrolled) {
+  .brand {
+    color: $ink-dark;
+  }
+
+  .links {
+    color: rgba(32, 37, 50, 0.72);
+
+    > a:hover,
+    .dropToggle:hover {
+      color: $ink-dark;
+    }
+
+    > a::after,
+    .dropToggle::after {
+      background: $brown-btn;
+    }
+  }
+
+  .burger {
+    color: $ink-dark;
+  }
+}
+
+// ---- Mobile ----
+.mobile {
+  @include container;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: rgba(26, 30, 41, 0.97);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+
+  a {
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(232, 236, 239, 0.08);
+    font-family: $font-body;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(232, 236, 239, 0.82);
+  }
+
+  @media (min-width: $bp-md) {
+    display: none;
+  }
+}
+
+.mobileGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileLabel {
+  display: block;
+  padding: 16px 0 4px;
+  font-family: $font-body;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(232, 236, 239, 0.5);
+}
+
+.mobileSub {
+  display: flex;
+  flex-direction: column;
+  padding-left: 18px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(232, 236, 239, 0.08);
+
+  a {
+    padding: 10px 0;
+    border-bottom: none;
+    font-size: 1.05rem;
+    color: rgba(232, 236, 239, 0.6);
+  }
+}
